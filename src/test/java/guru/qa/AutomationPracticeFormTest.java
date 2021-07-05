@@ -4,6 +4,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.exist;
@@ -45,6 +47,9 @@ public class AutomationPracticeFormTest {
         $("#stateCity-wrapper").$(byText("Select City")).click();
         $("#stateCity-wrapper").$(byText("Karnal")).click();
 
+        File file = new File("src/test/resources/art-008.jpg");
+        $("#uploadPicture").uploadFile(file);
+
         $("button#submit").click();
 
         $(byText("Thanks for submitting the form")).should(exist);
@@ -57,6 +62,7 @@ public class AutomationPracticeFormTest {
         $x("//td[text()='Hobbies']/following-sibling::td").shouldHave(text("Sports, Reading, Music"));
         $x("//td[text()='Address']/following-sibling::td").shouldHave(text("Moscow"));
         $x("//td[text()='State and City']/following-sibling::td").shouldHave(text("Haryana Karnal"));
+        $x("//td[text()='Picture']/following-sibling::td").shouldHave(text("art-008.jpg"));
     }
 
 }
