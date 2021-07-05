@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
 
 public class AutomationPracticeFormTest {
 
@@ -45,6 +47,16 @@ public class AutomationPracticeFormTest {
 
         $("button#submit").click();
 
+        $(byText("Thanks for submitting the form")).should(exist);
+        $x("//td[text()='Student Name']/following-sibling::td").shouldHave(text("John Shephard"));
+        $x("//td[text()='Student Email']/following-sibling::td").shouldHave(text("jsh@cy.cy"));
+        $x("//td[text()='Gender']/following-sibling::td").shouldHave(text("Male"));
+        $x("//td[text()='Mobile']/following-sibling::td").shouldHave(text("9999999999"));
+        $x("//td[text()='Date of Birth']/following-sibling::td").shouldHave(text("07 November,2070"));
+        $x("//td[text()='Subjects']/following-sibling::td").shouldHave(text("Computer Science"));
+        $x("//td[text()='Hobbies']/following-sibling::td").shouldHave(text("Sports, Reading, Music"));
+        $x("//td[text()='Address']/following-sibling::td").shouldHave(text("Moscow"));
+        $x("//td[text()='State and City']/following-sibling::td").shouldHave(text("Haryana Karnal"));
     }
 
 }
