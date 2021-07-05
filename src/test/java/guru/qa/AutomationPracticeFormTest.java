@@ -11,7 +11,7 @@ public class AutomationPracticeFormTest {
 
     @BeforeAll
      static void setup() {
-        Configuration.baseUrl = "https://demoqa.com/";
+        Configuration.baseUrl = "https://demoqa.com";
         Configuration.startMaximized = true;
     }
 
@@ -26,9 +26,9 @@ public class AutomationPracticeFormTest {
         $("#genterWrapper").$(byText("Male")).click();
 
         $("#dateOfBirthInput").click();
-        $("select.react-datepicker__month-select").selectOptionByValue("12");
+        $("select.react-datepicker__month-select").selectOptionByValue("10");
         $("select.react-datepicker__year-select").selectOptionByValue("2070");
-        $x("//div[@class='react-datepicker__week']/*[text()=23]").click();
+        $x("//div[@class='react-datepicker__week']/*[text()=7]").click();
 
         $("#subjectsInput").setValue("Computer Science").pressEnter();
 
@@ -38,7 +38,7 @@ public class AutomationPracticeFormTest {
 
         $("#currentAddress").setValue("Moscow");
 
-        $("#stateCity-wrapper").$(byText("Select State")).click();
+        $("#stateCity-wrapper").$(byText("Select State")).scrollIntoView(true).click();
         $("#stateCity-wrapper").$(byText("Haryana")).click();
         $("#stateCity-wrapper").$(byText("Select City")).click();
         $("#stateCity-wrapper").$(byText("Karnal")).click();
