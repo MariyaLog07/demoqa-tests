@@ -47,10 +47,9 @@ public class AutomationPracticeFormTest {
         $("#stateCity-wrapper").$(byText("Select City")).click();
         $("#stateCity-wrapper").$(byText("Karnal")).click();
 
-        File file = new File("src/test/resources/art-008.jpg");
-        $("#uploadPicture").uploadFile(file);
+        $("#uploadPicture").uploadFromClasspath("art-008.jpg");
 
-        $("button#submit").click();
+        $("#submit").click();
 
         $(byText("Thanks for submitting the form")).should(exist);
         $x("//td[text()='Student Name']/following-sibling::td").shouldHave(text("John Shephard"));
