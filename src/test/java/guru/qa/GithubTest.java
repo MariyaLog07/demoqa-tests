@@ -20,8 +20,7 @@ public class GithubTest {
         open("https://github.com/selenide/selenide");
         $("#wiki-tab").click();
         $(".js-wiki-more-pages-link").click();
-        $(".wiki-pages-box").shouldHave(text("SoftAssertions"));
-        $(byText("SoftAssertions")).click();
+        $(".wiki-pages-box").$(byText("SoftAssertions")).click();
         $("#wiki-body").shouldHave(text("@ExtendWith({SoftAssertsExtension.class})"));
     }
 }
