@@ -3,6 +3,7 @@ package guru.qa.tests;
 import com.github.javafaker.Faker;
 import guru.qa.pages.RegistrationPage;
 import org.junit.jupiter.api.Test;
+import static io.qameta.allure.Allure.step;
 
 import static guru.qa.tests.TestData.*;
 
@@ -19,19 +20,41 @@ public class StudentRegistrationFormTest extends TestBase {
 
     @Test
     void positiveFillTest() {
-        registrationPage.openPage();
-        registrationPage.typeFirstName(firstName);
-        registrationPage.typeLastName(lastName);
-        registrationPage.typeEmail(userEmail);
-        registrationPage.typePhoneNumber(userNumber);
-        registrationPage.chooseGender(gender);
-        registrationPage.calendar.setDate(day, month, year);
-        registrationPage.typeSubject(subject);
-        registrationPage.setHobbies(hobbie1, hobbie2, hobbie3);
-        registrationPage.typeAddress(currentAddress);
-        registrationPage.choseStateAndCity(state, city);
-        registrationPage.uploadPicture(fileName);
-        registrationPage.clickSubmit();
-        registrationPage.checkResults(firstName, lastName, userEmail, userNumber, subject, currentAddress, city);
+        step("Open students registration form", () -> {
+                    registrationPage.openPage();
+                });
+
+        step("Fill students registration form", () -> {
+            step("Fill common data", () -> {
+                registrationPage.typeFirstName(firstName);
+                registrationPage.typeLastName(lastName);
+                registrationPage.typeEmail(userEmail);
+                registrationPage.typePhoneNumber(userNumber);
+                registrationPage.chooseGender(gender);
+            });
+            step("Set date", () -> {
+                registrationPage.calendar.setDate(day, month, year);
+            });
+            step("Set subject", () -> {
+                registrationPage.typeSubject(subject);
+            });
+            step("Set hobbies", () -> {
+                registrationPage.setHobbies(hobbie1, hobbie2, hobbie3);
+            });
+            step("Set address", () -> {
+                registrationPage.typeAddress(currentAddress);
+                registrationPage.choseStateAndCity(state, city);
+            });
+            step("Upload picture", () -> {
+                registrationPage.uploadPicture(fileName);
+            });
+            step("Submit form", () -> {
+                registrationPage.clickSubmit();
+            });
+        });
+
+        step("Verify successful form submit", () -> {
+            registrationPage.checkResults(firstName, lastName, userEmail, userNumber, subject, currentAddress, city);
+        });
     }
 }
